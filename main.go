@@ -5,6 +5,8 @@ import (
 	"regexp"
 	"strings"
 
+	"tacos-to-go/internal/slack"
+
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
 )
@@ -12,6 +14,7 @@ import (
 func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Post("/slack", slack.SlackVerificationHandler)
 
 	http.ListenAndServe(":3000", r)
 }
