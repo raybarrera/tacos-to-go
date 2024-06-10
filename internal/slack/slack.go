@@ -51,7 +51,9 @@ func SlackVerificationHandler(writer http.ResponseWriter, request *http.Request)
 	switch slackEvent.Type {
 	case "url_verification":
 		response := slackEvent.Challenge
-		http.Error(writer, response, http.StatusOK)
+		writer.WriteHeader(http.StatusOK)
+		writer.Header().Set("Content-Type", "text/plain")
+		writer.Write([]byte(response))
 		return
 	default:
 		slog.Info("Slack Message Received", "message", slackEvent)
