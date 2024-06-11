@@ -8,7 +8,7 @@ func TestPragmaMapToDbUrl(t *testing.T) {
 		"t2": "v2",
 	}
 
-	url := PragmaMapToDbUrl(pragmas)
+	url := pragmaMapToDbUrl(pragmas)
 	expected := "?_pragma=t1(v1)&_pragma=t2(v2)"
 	if url != expected {
 		t.Errorf("Expected %s, got %s", expected, url)
